@@ -23,12 +23,6 @@ def scoreModel(model,X,y):
 
     return cv_score_ll, cv_score_f1, cv_score_ac, cv_score_rc, cv_score_pr, cv_score_roc
 
-if __name__ == "main":
-
-    path = "D:\\DataScience\\MachineHack_FinRisk\\Financial_Risk_Participants_Data\\Financial_Risk_Participants_Data\\Train.csv"
-    df = importData(path)
-    print(df.head())
-    print('Hello')
 
 
 
