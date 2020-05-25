@@ -29,7 +29,6 @@ def scoreModel(models,X,y):
     return score_df
 
 def plotScores(score_df):
-    figure = plt.figure(figsize=(15,8))
     plt.plot(score_df['Model'],score_df['Recall'],color='orange',marker='o')
     plt.plot(score_df['Model'],score_df['Precision'],color='blue',marker='o')
     plt.plot(score_df['Model'],score_df['F1-Score'],color='green',marker='o')
@@ -40,5 +39,21 @@ def plotScores(score_df):
     plt.ylabel('Score')
     plt.xlabel('Models')
     plt.show()
+
+def ChooseModel(score_df,metrics):
+    model_dct = {}
+    for metric in metrics:
+        temp = score_df.copy()
+        if metric is 'LogLoss':
+            order = True
+        else:
+            order = False
+
+        temp.sort_values(by=metric,ascending=order,inplace=True)
+        model_select = temp['Model'].values[:3]
+        model_dct.update({metric:model_select})
+
+
+    return model_dct
 
     

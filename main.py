@@ -1,5 +1,4 @@
-from classifier_score import importData, scoreModel, plotScores
-from classifier_score import scoreModel
+from classifier_score import importData, scoreModel, plotScores, ChooseModel
 from sklearn.naive_bayes import GaussianNB
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
@@ -13,6 +12,11 @@ X = df[var]
 y = df['IsUnderRisk']
 classifiers = [LogisticRegression(random_state=100),RandomForestClassifier(random_state=100),GaussianNB(),AdaBoostClassifier(random_state=100),GradientBoostingClassifier(random_state=100)]
 score_df = scoreModel(classifiers,X,y)
-
 print(score_df)
+
+metrics = ['Precision','Recall','F1-Score','ROC','LogLoss','Accuracy']
+dct = ChooseModel(score_df,metrics)
+print(dct)
+
 plotScores(score_df)
+
